@@ -3,19 +3,30 @@ package com.devsuperior.dscatalog.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 //pratica de colocar Serializable para transformar o objeto em sequencia de bites
+@Entity
+@Table(name = "tb_category")
 public class Category implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //fazemos o ID ser autoincrementado
 	private Long id;
 	private String name;
-	
+
 	public Category() {
-		
+
 	}
 
 	public Category(Long id, String name) {
-		
+
 		this.id = id;
 		this.name = name;
 	}
@@ -36,13 +47,13 @@ public class Category implements Serializable {
 		this.name = name;
 	}
 
-	//metodo de comparacao entre objetos mas nao é 100%
+	// metodo de comparacao entre objetos mas nao é 100%
 	@Override
-	public int hashCode() {       
+	public int hashCode() {
 		return Objects.hash(id);
 	}
 
-	//metodo de comparacao entre objetos mais lenta mas 100%
+	// metodo de comparacao entre objetos mais lenta mas 100%
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -55,6 +66,4 @@ public class Category implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 
-	
-	
 }
